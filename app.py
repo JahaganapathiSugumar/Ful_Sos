@@ -1,12 +1,13 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import smtplib
+import ssl
+from email.message import EmailMessage
+from twilio.rest import Client
+import requests
+
+app = Flask(__name__)
 
 def send_sos_alert():
-    import smtplib
-    import ssl
-    from email.message import EmailMessage
-    from twilio.rest import Client
-    import requests
-
     # Email Alert
     def send_email():
         email_sender = 'jahaganapathi1@gmail.com'
@@ -105,7 +106,7 @@ def send_sos_alert():
         ]
         for sms_detail in sms_numbers:
             message = client.messages.create(
-                body="This is SOS Alert",
+                body="This is an SOS Alert",
                 from_="+17853359244",
                 to=sms_detail["to"]
             )
@@ -117,16 +118,19 @@ def send_sos_alert():
     send_call()
     send_sms()
 
+
 # Flask API setup
-app = Flask(__name__)
-
-
 @app.route('/', methods=['GET', 'POST'])
 def api_send_sos():
     if request.method == 'GET':
         return jsonify({"status": "success", "message": "This endpoint is live!"}), 200
+
     try:
         send_sos_alert()
         return jsonify({"status": "success", "message": "SOS alert sent!"}), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
