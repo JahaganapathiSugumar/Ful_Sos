@@ -49,7 +49,7 @@ def send_sos_alert():
     def send_whatsapp():
         url = 'https://graph.facebook.com/v20.0/380663718469903/messages'
         headers = {
-            'Authorization': 'Bearer EAAHXnznde8wBO4d1D5zf9EcZBfDhuzEMCZCv7wxYK3JlSf3IQHaSFZBRVF4ySgRLq6WgGbyAgymnY0nchbBNcit0LZBgqAdBgVJvZBoLX1ocLIvgZAnd07L2fBZBRdZCMdOh1w0hR6u6URhdibDFcDiD6DWj7v7xgV6CWX4a0xAogps5Fk9w8JQzte3TxBkDIusEMu1ZB8tcOTDtvc9BWTnFvxQI9ZB68ZD',
+            'Authorization': 'Bearer EAAHXnznde8wBOzwvoUdNxHsubXxTiA7RBuVZA4eXztKofjwCyuN4MunzD3ZATCM5iJPy2oZAOBJ6BH3ZC6WLGpAm0pFt0Vi2ZAOsZAQ4sV6nJfJqpxfgzfiw3bQetVw6Mi3ZBpha1Bicy2gnf6gttWZBbc22ZAuoOjksygH1mVmP8FZBldqMcxcSs52scNVqIRe86pge36vYLWxPlSFdgErz3UtYRh0HAZD',
             'Content-Type': 'application/json'
         }
         phone_numbers = [
