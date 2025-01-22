@@ -120,13 +120,13 @@ def send_sos_alert():
 # Flask API setup
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def api_send_sos():
+    if request.method == 'GET':
+        return jsonify({"status": "success", "message": "This endpoint is live!"}), 200
     try:
         send_sos_alert()
         return jsonify({"status": "success", "message": "SOS alert sent!"}), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
