@@ -45,37 +45,7 @@ def send_sos_alert():
         except Exception as e:
             print(f"Failed to send email. Error: {str(e)}")
 
-    # WhatsApp Alert
-    def send_whatsapp():
-        url = 'https://graph.facebook.com/v20.0/380663718469903/messages'
-        headers = {
-            'Authorization': 'Bearer EAAHXnznde8wBOzwvoUdNxHsubXxTiA7RBuVZA4eXztKofjwCyuN4MunzD3ZATCM5iJPy2oZAOBJ6BH3ZC6WLGpAm0pFt0Vi2ZAOsZAQ4sV6nJfJqpxfgzfiw3bQetVw6Mi3ZBpha1Bicy2gnf6gttWZBbc22ZAuoOjksygH1mVmP8FZBldqMcxcSs52scNVqIRe86pge36vYLWxPlSFdgErz3UtYRh0HAZD',
-            'Content-Type': 'application/json'
-        }
-        phone_numbers = [
-            "916382293288",
-            "917871937373",
-            "916381553551",
-            "916379613654"
-        ]
-        for number in phone_numbers:
-            payload = {
-                "messaging_product": "whatsapp",
-                "to": number,
-                "type": "template",
-                "template": {
-                    "name": "hello_world",
-                    "language": {
-                        "code": "en_US"
-                    }
-                }
-            }
-            response = requests.post(url, json=payload, headers=headers)
-            if response.status_code == 200:
-                print(f"WhatsApp message successfully sent to {number}")
-            else:
-                print(f"Failed to send WhatsApp message to {number}: {response.status_code} - {response.text}")
-
+    
     # Call Alert
     def send_call():
         account_sid = "AC67e7787e73dea494290e1a54f27ba59a"
@@ -114,7 +84,7 @@ def send_sos_alert():
 
     # Execute all alerts
     send_email()
-    send_whatsapp()
+    
     send_call()
     send_sms()
 
